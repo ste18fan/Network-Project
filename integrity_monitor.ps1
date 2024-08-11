@@ -16,13 +16,13 @@ function Hash-return{
     #SHA 1 hash isn't really secure because it can cause hash collisons - basically getting the same hash from runnning two different things through the same SHA 1 algorithm 
 
     if ($randnum -eq 1){
-        Get-FileHash $file -Algorithm 
+        Get-FileHash $file -Algorithm SHA384
     }
     elseif ($randnum -eq 2){
-        Get-FileHash $file -Algorithm 
+        Get-FileHash $file -Algorithm SHA256
     }
-    elseif ($randnum -eq 3){
-        Get-FileHash $file -Algorithm 
+    elseif ($randnum -eq 3){SHA\\
+        Get-FileHash $file -Algorithm SHA512
     }
 
     

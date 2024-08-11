@@ -1,5 +1,7 @@
 import os
 
+print("googoogaga")
+
 # Prompt user to choose between creating a new folder or using an existing one
 create = input("1.) Create a folder to store these passwords, 2.) Store in existing folder: ")
 if create == "1":

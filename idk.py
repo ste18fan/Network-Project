@@ -1,9 +1,8 @@
 import os
 
-print("googoogaga")
 
 # Prompt user to choose between creating a new folder or using an existing one
-create = input("1.) Create a folder to store these passwords, 2.) Store in existing folder: ")
+create = input("1.) Create a folder to store these passwords, 2.) Store in existing folder: , 3.)Check Passwords, 4.Forgot ")
 if create == "1":
     # Create a new folder
     folder_name = input("Make a name for the folder you can find this all in: ")
@@ -12,6 +11,10 @@ if create == "1":
 elif create == "2":
     # Use an existing folder
     folder_name = input("Enter name of existing folder: ")
+
+#3= Inside password text implement option for 2Factor Authentication 
+#4 = Forgot password - Using a librabry can send email containing things
+
 
 # Prompt user for password details
 specify = input("Name of password designation (basically what is it for): ")

@@ -1,8 +1,29 @@
 import os
 
+#tinker holds tkinter library
+import tkinter as tinker
 
 # Prompt user to choose between creating a new folder or using an existing one
-create = input("1.) Create a folder to store these passwords, 2.) Store in existing folder: , 3.)Check Passwords, 4.Forgot ")
+create = input("1.) Create a folder to store these passwords, 2.) Store in existing folder, 3.)Open Existing Folder: ")
+
+if create == "3":
+    #Open Existing Folder and make GUI using tkinter
+    root  = tinker.Tk()
+
+    #size of window
+    root.geometry("800x500")
+    root.title("Password Manager")
+
+    #top of page
+    label = tinker.Label(root, text= "Ganga", font = ("Arial",16))
+    label.pack(padx=20, pady=20)
+    textbox = tinker.Text(root,height=3, font=("Arial", 16))
+    textbox.pack()
+
+    #
+    root.mainloop()
+
+
 if create == "1":
     # Create a new folder
     folder_name = input("Make a name for the folder you can find this all in: ")

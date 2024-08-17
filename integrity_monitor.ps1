@@ -27,6 +27,34 @@ Write-Host "2.)Begin from saved Baseline"
 
 $option = Read-Host -Prompt 'Choice'
 
+function Hash-return{
+    param(
+        [string] $file
+    )
+    $randNum = Get-Random -Minimum 1 -Maximum 3
+
+
+    #Want to have random hash algorithms atleast 3, the difference between them is the size of the resulting hash in terms of bits 
+    #SHA 1 hash isn't really secure because it can cause hash collisons - basically getting the same hash from runnning two different things through the same SHA 1 algorithm    
+
+    $f_hash=Get-FileHash $file -Algorithm SHA384
+    return $f_hash
+
+    # if ($randNum -eq 1){
+    #     $f_hash=Get-FileHash $file -Algorithm SHA384
+    #     return $f_hash
+    # }
+    # elseif ($randNum -eq 2){
+    #     $f_hash=Get-FileHash $file -Algorithm SHA256
+    #     return $f_hash
+    # }
+    # elseif ($randNum -eq 3){
+    #     $f_hash=Get-FileHash $file -Algorithm SHA512
+    #     return $f_hash
+    # }
+
+    #Hash Algorithm defaults to SHA256
+}
 
 Hashreturn "C:\Users\stefa\OneDrive\Desktop\PScripts\Python_Stuff\hash.ps1"
 

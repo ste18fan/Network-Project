@@ -27,12 +27,20 @@ Write-Host "2.)Begin from saved Baseline"
 
 $option = Read-Host -Prompt 'Choice'
 
+#functions
 function Hash-return{
     param(
         [string] $file
     )
     $randNum = Get-Random -Minimum 1 -Maximum 3
 
+function baselineErasure(){
+    $baseExist = Test-Path -path .\baseline.txt
+
+    if($baseExist){
+        Remove Item -Path .\baseline.txt
+    }
+}
 
     #Want to have random hash algorithms atleast 3, the difference between them is the size of the resulting hash in terms of bits 
     #SHA 1 hash isn't really secure because it can cause hash collisons - basically getting the same hash from runnning two different things through the same SHA 1 algorithm    
@@ -56,10 +64,13 @@ function Hash-return{
     #Hash Algorithm defaults to SHA256
 }
 
+#Get input for baseline and do if statement for if path does not exist
 Hashreturn "C:\Users\stefa\OneDrive\Desktop\PScripts\Python_Stuff\hash.ps1"
 
 if ($option -eq 1){
+    #Clear baseline
     Write-Host "Process for Collecting Baseline"
+    baselineErasure
     #Collect files in dir to monitor
     $files = Get-ChildItem -Path .\
     foreach($thing in $files){
@@ -88,18 +99,13 @@ else{
 
 
 
- 
-
-#     Hash Algorithm defaults to SHA256
-# }
-
 
 
 function Hashreturn{
     param(
         [string] $file
     )
-    $randNum = Get-Random -Minimum 1 -Maximum 3
+    # $randNum = Get-Random -Minimum 1 -Maximum 3
     #Want to have random hash algorithms atleast 3, the difference between them is the size of the resulting hash in terms of bits 
     #SHA 1 hash isn't really secure because it can cause hash collisons - basically getting the same hash from runnning two different things through the same SHA 1 algorithm    
 

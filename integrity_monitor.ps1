@@ -56,7 +56,7 @@ function Hash-return{
     #Hash Algorithm defaults to SHA256
 }
 
-Hashreturn "C:\Users\stefa\OneDrive\Desktop\PScripts\Python_Stuff\hash.ps1"
+# Hashreturn "C:\Users\stefa\OneDrive\Desktop\PScripts\Python_Stuff\hash.ps1"
 
 if ($option -eq 1){
     Write-Host "Process for Collecting Baseline"
@@ -80,7 +80,11 @@ if ($option -eq 1){
 }
 elseif ($option -eq 2){
     Write-host "Process for saved baseline" 
-
+    $pathandHash = Get-Content -Path C:\Users\stefa\OneDrive\Desktop\PScripts\Python_Stuff\baseline.txt
+    $pathandHash[1]
+    #takes hashes from file and store in dictionary 
+    $HashDictionary= @{}
+  
 }
 else{
     Write-Host "Invalid."
@@ -99,7 +103,7 @@ function Hashreturn{
     param(
         [string] $file
     )
-    $randNum = Get-Random -Minimum 1 -Maximum 3
+    # $randNum = Get-Random -Minimum 1 -Maximum 3
     #Want to have random hash algorithms atleast 3, the difference between them is the size of the resulting hash in terms of bits 
     #SHA 1 hash isn't really secure because it can cause hash collisons - basically getting the same hash from runnning two different things through the same SHA 1 algorithm    
 
@@ -108,6 +112,8 @@ function Hashreturn{
         $f_hash=Get-FileHash $file 
         return $f_hash
         #Exclude .git and .vscode from process
+
+        
     } 
     catch{
     Write-Warning -Message "Monitor Tried to read a folder. Ignore."

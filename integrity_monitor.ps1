@@ -92,10 +92,44 @@ if ($option -eq 1){
 elseif ($option -eq 2){
     Write-host "Process for saved baseline" 
     $pathandHash = Get-Content -Path C:\Users\stefa\OneDrive\Desktop\PScripts\Python_Stuff\baseline.txt
-    $pathandHash[1]
-    #takes hashes from file and store in dictionary 
     $HashDictionary= @{}
-  
+    foreach($file in $openpathandhashes){
+        $HashDictionary.Add( $file.Spilt("|")[0], $file.Spilt("|")[1])
+
+       
+
+    }
+    
+    while($true){
+        Start-Sleep - Seconds 1
+
+        Write-Host "Checking if files match..."
+
+        $files = Get-ChildItem -Path .\
+        foreach($thing in $files){
+            # Used Hash-return function to return hash of file 
+            $file_hash=Hashreturn $thing.FullName
+            "Path: $($file_hash.Path)||Hash: $($file_hash.Hash)" | Out-File -FilePath .\baseline.txt -Append
+
+            
+    }
+
+    }
+
+    #takes hashes from file and store in dictionary 
+    
+    
+    $HashDictionary
+    
+
+        
+    }{
+        
+    
+
+    
+
+
 }
 else{
     Write-Host "Invalid."
@@ -110,7 +144,6 @@ function Hashreturn{
         [string] $file
     )
     # $randNum = Get-Random -Minimum 1 -Maximum 3
-    # $randNum = Get-Random -Minimum 1 -Maximum 3
     #Want to have random hash algorithms atleast 3, the difference between them is the size of the resulting hash in terms of bits 
     #SHA 1 hash isn't really secure because it can cause hash collisons - basically getting the same hash from runnning two different things through the same SHA 1 algorithm    
 
@@ -119,8 +152,6 @@ function Hashreturn{
         $f_hash=Get-FileHash $file 
         return $f_hash
         #Exclude .git and .vscode from process
-
-        
     } 
     catch{
     Write-Warning -Message "Monitor Tried to read a folder. Ignore."
